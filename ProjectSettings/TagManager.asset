@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Circle_Collider
+  - Circle_Collideer
+  - Sphere
+  - Ground
+  - line
   layers:
   - Default
   - TransparentFX
