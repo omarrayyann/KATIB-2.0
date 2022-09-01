@@ -1,4 +1,4 @@
-# KATIB-2.0
+# KATIB on Unity
 A handwriting assisting platform that provides contactless kinesthetic feedback by utilizing magnetic forces. KATIB aims to help post-stroke patients regain writing skills.
 
 Screenshots:
