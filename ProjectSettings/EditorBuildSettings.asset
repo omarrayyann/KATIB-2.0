@@ -5,34 +5,34 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Instructor/Login.unity
     guid: 2a98c017a3b384b8c8df6085c00bd38d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Instructor/Register.unity
     guid: 319c33f39c15841baaf1b0e27e6616a3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Instructor/LearnersTab.unity
     guid: 3d6661e4a74e33d42a58eb54b35525f0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Instructor/FinishRegistering.unity
     guid: 0b87fb5a9279b429a8ca29d4e3dbf2db
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Learner/SignIn.unity
     guid: f98feeae57cd5c94eb4406bc4b6b1aba
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Learner/CollectingTask.unity
     guid: 2bd9c22028e204c4fbf721ae0315d8d0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Learner/Main.unity
     guid: 40dad35669f28694795b372bcc6d367d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Learner/MazeTask.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Learner/Writing.unity
     guid: 790ffd499ab8d4c4e9ecf3a45d2f2541
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Instructor/Classes.unity
     guid: b774f3b0b4243be4abfb2d6b5d77664b
   - enabled: 1

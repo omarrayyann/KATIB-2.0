@@ -6,7 +6,7 @@ using System.Text;
 
 public class KatibInteraction : MonoBehaviour
 {
-    public string port = "/dev/ttyACM0";
+    public string port = "/dev/tty.usbmodem101";
     public int baudRate = 115200;
 
     private SerialPort sp;
@@ -33,10 +33,12 @@ public class KatibInteraction : MonoBehaviour
     {
         isStreaming = true;
         sp = new SerialPort(port, baudRate);
-        sp.ReadTimeout = 100;
         sp.Open();
+
+        sp.ReadTimeout = 100;
         // Flush how?
-        StartCoroutine("SetUp");
+        StartCoroutine("Calibrate");
+
     }
 
     /// <summary>
@@ -56,32 +58,31 @@ public class KatibInteraction : MonoBehaviour
         Debug.Log(sp.ReadLine());
         yield return new WaitForSeconds(0.1f);
         // sp.WriteLine("G10 P1 L20 \n");
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X129  Y-73 F4000\n")));
+        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X129 Y-73 F4000\n")));
         Debug.Log(sp.ReadLine());
         yield return new WaitForSeconds(0.1f);
         sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G10 P1 L20 X0 Y0 Z0\n")));
         Debug.Log(sp.ReadLine());
         yield return new WaitForSeconds(2);
         // sp.WriteLine("$X\n");
-        Debug.Log(sp.ReadLine());
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y-95 F4000\n")));
-        Debug.Log(sp.ReadLine());
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
-        yield return new WaitForSeconds(0.1f);
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X143 Y-95 F4000\n")));
-        Debug.Log(sp.ReadLine());
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y0 F4000\n")));
-        Debug.Log(sp.ReadLine());
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
-        yield return new WaitForSeconds(0.1f);
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y0 Z72 F4000\n")));
-        Debug.Log(sp.ReadLine());
-        yield return new WaitForSeconds(0.1f);
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
-        yield return new WaitForSeconds(2f);
+        // Debug.Log(sp.ReadLine());
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y-95 F4000\n")));
+        // Debug.Log(sp.ReadLine());
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
+        // yield return new WaitForSeconds(0.1f);
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X143 Y-95 F4000\n")));
+        // Debug.Log(sp.ReadLine());
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y0 F4000\n")));
+        // Debug.Log(sp.ReadLine());
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
+        // yield return new WaitForSeconds(0.1f);
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y0 Z72 F4000\n")));
+        // Debug.Log(sp.ReadLine());
+        // yield return new WaitForSeconds(0.1f);
+        // sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
+        // yield return new WaitForSeconds(2f);
     }
-    
 
     /// <summary>
     /// Sends the next point through the open port
@@ -105,6 +106,7 @@ public class KatibInteraction : MonoBehaviour
             currentSet++;
         }
     }
+
 
     /// <summary>
     /// Transforms the cm coordinates into pixel coordinates
