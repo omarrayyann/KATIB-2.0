@@ -6,7 +6,7 @@ using System.Text;
 
 public class KatibInteraction : MonoBehaviour
 {
-    public string port = "/dev/tty.usbmodem101";
+    public string port = "COM7";
     public int baudRate = 115200;
 
     private SerialPort sp;
@@ -37,7 +37,10 @@ public class KatibInteraction : MonoBehaviour
 
         sp.ReadTimeout = 100;
         // Flush how?
-        StartCoroutine("Calibrate");
+        //sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
+        //sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$H\n")));
+        StartCoroutine(Calibrate());
+        Debug.Log("Here");
 
     }
 
@@ -45,24 +48,28 @@ public class KatibInteraction : MonoBehaviour
     /// Callibration procedure
     /// </summary>
     /// <returns></returns>
-    IEnumerable Calibrate()
+    IEnumerator Calibrate()
     {
         yield return new WaitForSeconds(1);
+        Debug.Log("Start");
         sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$X\n")));
+        Debug.Log(sp.ReadLine());
         sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("$H\n")));
-
-        yield return new WaitForSeconds(35);
+        
+        yield return new WaitForSeconds(30);
 
         yield return new WaitForSeconds(1);
         sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G10 P1 L20 X0 Y0 Z0\n")));
         Debug.Log(sp.ReadLine());
         yield return new WaitForSeconds(0.1f);
         // sp.WriteLine("G10 P1 L20 \n");
-        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X129 Y-73 F4000\n")));
-        Debug.Log(sp.ReadLine());
+        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X80 Y-10 Z0 F4000\n")));
+        //Debug.Log(sp.ReadLine());
         yield return new WaitForSeconds(0.1f);
         sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G10 P1 L20 X0 Y0 Z0\n")));
-        Debug.Log(sp.ReadLine());
+        //Debug.Log(sp.ReadLine());
+        yield return new WaitForSeconds(0.1f);
+        sp.WriteLine(Encoding.UTF8.GetString(Encoding.Default.GetBytes("G21 X0 Y0 Z72.5 F4000\n")));
         yield return new WaitForSeconds(2);
         // sp.WriteLine("$X\n");
         // Debug.Log(sp.ReadLine());

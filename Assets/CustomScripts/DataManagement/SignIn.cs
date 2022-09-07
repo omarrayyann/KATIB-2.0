@@ -16,6 +16,7 @@ public class SignIn : MonoBehaviour
     [SerializeField]
     public KatibInteraction katibInteraction;
 
+
     /// <summary>
     /// If the log in details are correct, it moves to the next menu. Otherwise, an error message is printed
     /// </summary>
@@ -23,22 +24,21 @@ public class SignIn : MonoBehaviour
     public void LogIn()
     {
 
-        katibInteraction.Open();
 
 
-        // Debug.Log(inputUsername.text);
-        // Debug.Log(inputPassword.text);
-        // string username = inputUsername.text;
-        // username = username.ToLower();
-        // string password = inputPassword.text;
-        // if (Server.Authenticate(SpreadSheets.Learners, username, password))
-        // {
-        //     Menu menu = this.GetComponent<Menu>();
-        //     SceneManager.LoadScene("Main");
-        // }
-        // else
-        // {
-        //     Debug.LogError("Incorrect log in details");
-        // }
+        Debug.Log(inputUsername.text);
+         Debug.Log(inputPassword.text);
+         string username = inputUsername.text;
+         username = username.ToLower();
+         string password = inputPassword.text;
+         if (Server.Authenticate(SpreadSheets.Learners, username, password))
+         {
+            Menu menu = this.GetComponent<Menu>();
+            SceneManager.LoadScene("Main");
+         }
+         else
+         {
+             Debug.LogError("Incorrect log in details");
+         }
     }
 }
